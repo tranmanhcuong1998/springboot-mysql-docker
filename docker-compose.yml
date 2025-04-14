@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+#  mysql:
+#    image: mysql:8
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: productdb
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+
+  app:
+    image: springboot-mysql-docker:${IMAGE_TAG}
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/productdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 17111998a@A
+      TZ: Asia/Ho_Chi_Minh
+      JAVA_OPTS: "-Xms256m -Xmx12288m -Xss8M"
+#volumes:
+#  mysql_data:
